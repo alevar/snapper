@@ -1,0 +1,18 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "snapper debug",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "snapper",
+            "console": "integratedTerminal",
+            "args": [
+                "--reference", "${workspaceFolder}/../HIV_Atlas_Creation/data/reference/K03455.1.gtf",
+                "--sam", "${workspaceFolder}/../vira/tmp.KT284371.1/exon_nt.sam",
+                "--output", "${workspaceFolder}/out.sam",
+            ],
+        }
+    ]
+}
+  
