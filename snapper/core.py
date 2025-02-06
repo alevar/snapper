@@ -21,9 +21,9 @@ class Snapper:
         self.reference = args.reference
         self.output = args.output
 
-        self.qry_intron_match_score = 10
-        self.trg_pos_match_score = 1
-        self.trg_pos_mismatch_score = -1
+        self.qry_intron_match_score = args.qry_intron_match_score
+        self.trg_pos_match_score = args.trg_pos_match_score
+        self.trg_pos_mismatch_score = args.trg_pos_mismatch_score
 
     def run(self):
         # start by building transcriptomes for reference and target
@@ -66,7 +66,7 @@ class Snapper:
             if len(exons) > 1:
                 pos = 0
                 for exon in exons:
-                    pos += (exon[1] - exon[0]) + 1
+                    pos += (exon[1] - exon[0])
                     ref_intron_vec.append(pos)
                 ref_intron_vec.pop() # remove last position since it's not an intron
             return ref_intron_vec
@@ -269,6 +269,10 @@ def main():
     parser.add_argument('-r', '--reference', required=True, type=str, help='Path to the reference annotation')
     parser.add_argument('-o', '--output', type=str, help='Path to the output GTF file')
     
+    parser.add_argument('--qry_intron_match_score', type=int, default=10, help='Score for matching query introns')
+    parser.add_argument('--trg_pos_match_score', type=int, default=1, help='Score for matching target positions')
+    parser.add_argument('--trg_pos_mismatch_score', type=int, default=-1, help='Score for mismatching target positions')
+
     args = parser.parse_args()
 
     snapper = Snapper(args)
