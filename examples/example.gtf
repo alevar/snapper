@@ -1,0 +1,4 @@
+test_genome	testing	transcript	1	36	.	+	.	transcript_id "test_transcript"; gene_id "test_gene";
+test_genome	testing	exon	1	12	.	+	.	transcript_id "test_transcript"; exon_id "exon1";
+test_genome	testing	exon	25	36	.	+	.	transcript_id "test_transcript"; exon_id "exon2";
+test_genome	testing	exon	48	60	.	+	.	transcript_id "test_transcript"; exon_id "exon3";

@@ -1,0 +1,3 @@
+@HD	VN:1.6	SO:coordinate
+@SQ	SN:test_genome	LN:60
+read1	0	test_genome	1	60	12M2N12M2N12M	*	0	0	ATGCGTACGTAGCTAGCTAGCGAT	*

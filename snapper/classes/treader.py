@@ -100,6 +100,8 @@ class TReader:
             if line.startswith('#'):
                 self.comments.append(line)
                 continue
+            if line.strip() == "":
+                continue
 
             obj = GTFObjectFactory.create(line)
             if not obj is None:

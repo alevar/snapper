@@ -1,18 +1,12 @@
-import os
-import re
 import sys
-import copy
 import pysam
-import shutil
 import argparse
-import subprocess
-
-from itertools import combinations
 
 from .utils.common import *
 
-from .classes.txgroup import Transcriptome, Gene, Bundle
-from .classes.transcript import Transcript, Object
+from itertools import combinations
+
+from .classes.txgroup import Transcriptome
 
 class Snapper:
     def __init__(self, args):         
@@ -34,13 +28,6 @@ class Snapper:
 
     def adjust_cigar_with_pysam(self, input_bam, output_bam, ref_tome):
         """Precisely align reference intron boundaries while preserving other features"""
-        
-        def parse_cigar(cigar):
-            return [(int(length), op) for length, op in re.findall(r'(\d+)(\D)', cigar)]
-
-        def build_cigar(ops):
-            """Convert list of CIGAR tuples to CIGAR string"""
-            return ''.join(f"{length}{op}" for op, length in ops)
         
         def explode_cigar(ops):
             """
@@ -206,7 +193,7 @@ class Snapper:
             """Adjust CIGAR to match reference exon boundaries exactly"""
 
             # Parse and explode original CIGAR
-            raw_ops = parse_cigar(original_cigar)
+            raw_ops = parse_cigar_into_tuples(original_cigar)
             ops = explode_cigar(raw_ops)
 
             exons = [(x[0]-1, x[1]-1) for x in exons]
@@ -220,7 +207,7 @@ class Snapper:
             best_cigar = max(cigar_variants, key=lambda x: score_cigar(x, self.qry_intron_match_score, self.trg_pos_match_score, self.trg_pos_mismatch_score))
 
             # Merge operations back to standard CIGAR format
-            res_cigar = build_cigar(merge_ops(best_cigar))
+            res_cigar = build_cigar_from_tuples(merge_ops(best_cigar))
             return res_cigar
 
         # File handling with pysam
@@ -265,9 +252,9 @@ class Snapper:
 def main():
     parser = argparse.ArgumentParser(description="Correct Intron shifts in alignments via reference annotation")
 
-    parser.add_argument('-s', '--sam', required=True, type=str, help='Path to the sam alignment file')
+    parser.add_argument('-s', '--sam', required=True, type=str, help='Path to the sam/bam alignment file')
     parser.add_argument('-r', '--reference', required=True, type=str, help='Path to the reference annotation')
-    parser.add_argument('-o', '--output', type=str, help='Path to the output GTF file')
+    parser.add_argument('-o', '--output', type=str, help='Path to the output sam/bam file')
     
     parser.add_argument('--qry_intron_match_score', type=int, default=10, help='Score for matching query introns')
     parser.add_argument('--trg_pos_match_score', type=int, default=1, help='Score for matching target positions')

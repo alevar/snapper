@@ -951,3 +951,10 @@ def partition_chains(chains):
         res = _partition_chains(res, chain)
 
     return res
+
+def parse_cigar_into_tuples(cigar):
+    return [(int(length), op) for length, op in re.findall(r'(\d+)(\D)', cigar)]
+
+def build_cigar_from_tuples(ops):
+    """Convert list of CIGAR tuples to CIGAR string"""
+    return ''.join(f"{length}{op}" for op, length in ops)
