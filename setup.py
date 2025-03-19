@@ -2,7 +2,12 @@ from setuptools import setup, find_packages
 
 setup(
     name='snapper-av',
-    version='1.0.1',
+    version='1.0.2',
+    author='Ales Varabyou',
+    author_email='ales.varabyou@jhu.edu',
+    url='https://github.com/alevar/snapper',
+    description='SNAPPER: Correct Intron Shifts in Alignments via Reference Annotation',
+    license='GPLv3',
     packages=find_packages(),
     install_requires=[
         'biopython',
@@ -12,8 +17,8 @@ setup(
         'pysam',
         'setuptools'
     ],
-    long_description=open('README.rst').read(),
-    long_description_content_type='text/x-rst',
+    long_description=open('README.md').read(),
+    long_description_content_type='text/markdown',
     classifiers=[
         'Programming Language :: Python :: 3',
         'License :: OSI Approved :: GNU General Public License v3 (GPLv3)',
