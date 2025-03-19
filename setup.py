@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='snapper-av',
-    version='0.1.4',
+    version='1.0.1',
     packages=find_packages(),
     install_requires=[
         'biopython',
@@ -12,7 +12,7 @@ setup(
         'pysam',
         'setuptools'
     ],
-    llong_description=open('README.rst').read(),
+    long_description=open('README.rst').read(),
     long_description_content_type='text/x-rst',
     classifiers=[
         'Programming Language :: Python :: 3',
