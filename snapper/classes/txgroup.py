@@ -1,5 +1,5 @@
-from intervaltree import Interval, IntervalTree
-from typing import Iterator, List, Callable
+from intervaltree import IntervalTree
+from typing import Iterator, Callable
 import copy
 import os
 

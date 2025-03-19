@@ -1,14 +1,3 @@
-from intervaltree import Interval, IntervalTree
-from typing import Iterator, List, Callable
-import copy
-import os
-
-from pyfaidx import Fasta
-
-from ..classes.treader import TReader
-from ..classes.transcript import Transcript, Object
-from ..utils.common import *
-
 class SpliceGraph:
     def __init__(self):
         self.nodes = []

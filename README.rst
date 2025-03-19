@@ -1,8 +1,8 @@
 SNAPPER: BAM/SAM/CRAM Intron adjustment guided by reference intron positions.
 =======================================================================================================================================================================
 
-.. image:: https://badge.fury.io/py/snapper.svg
-    :target: https://pypi.org/project/snapper/
+.. image:: https://badge.fury.io/py/snapper-av.svg
+    :target: https://pypi.org/project/snapper-av/
     :alt: SNAPPER Install
 .. image:: https://img.shields.io/github/downloads/alevar/snapper/total.svg
     :target: https://github.com/alevar/SNAPPER/releases/latest

@@ -1,16 +1,16 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='snapper',
-    version='0.1',
+    name='snapper-av',
+    version='0.1.4',
     packages=find_packages(),
     install_requires=[
-        'pysam',
         'biopython',
-        'pyfaidx',
         'intervaltree',
         'numpy',
-        'subprocess32',
+        'pyfaidx',
+        'pysam',
+        'setuptools'
     ],
     llong_description=open('README.rst').read(),
     long_description_content_type='text/x-rst',
